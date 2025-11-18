@@ -1,6 +1,6 @@
 """
-Main Unified Pipeline Class - Corrected Path Version
-Combines tracking/detection with 2D pose estimation
+Main Unified Pipeline Class - Fixed Dependencies
+Uses pip packages instead of local repos
 """
 
 import cv2
@@ -27,9 +27,6 @@ class UnifiedPosePipeline:
         
         print("🚀 Initializing Unified Pose Pipeline...")
         
-        # Ensure repos are in path
-        self.setup_system_paths()
-        
         # Initialize components
         self.setup_trackdet_components()
         self.setup_pose2d_components()
@@ -38,22 +35,8 @@ class UnifiedPosePipeline:
         self.track_history = defaultdict(list)
         self.frame_data = {}
     
-    def setup_system_paths(self):
-        """Ensure both repositories are in Python path"""
-        repo_paths = [
-            '/content/pjboxmot',
-            '/content/pjpose2d'
-        ]
-        
-        for path in repo_paths:
-            if path not in sys.path:
-                sys.path.insert(0, path)
-                print(f"✅ Added to path: {path}")
-            else:
-                print(f"✅ Already in path: {path}")
-    
     def setup_trackdet_components(self):
-        """Setup tracking & detection components from BoxMOT"""
+        """Setup tracking & detection components using pip packages"""
         print("🔧 Setting up TrackDet components...")
         
         try:
@@ -74,10 +57,11 @@ class UnifiedPosePipeline:
             
         except ImportError as e:
             print(f"❌ Failed to import TrackDet components: {e}")
+            print("Please install: pip install boxmot ultralytics")
             raise
     
     def setup_pose2d_components(self):
-        """Setup 2D pose estimation components from RTMPose"""
+        """Setup 2D pose estimation components using pip packages"""
         print("🔧 Setting up Pose2D components...")
         
         try:
@@ -94,9 +78,37 @@ class UnifiedPosePipeline:
             
         except ImportError as e:
             print(f"❌ Failed to import Pose2D components: {e}")
+            print("Please install: pip install rtmlib")
             raise
 
+    # [KEEP ALL OTHER METHODS THE SAME - stage1_trackdet, analyze_tracking_results, etc.]
+    
     def stage1_trackdet(self, input_video, max_frames=None):
+        """Stage 1: Track all persons and find the longest-running person"""
+        # ... [keep all existing code] ...
+        pass
+    
+    def analyze_tracking_results(self, tracking_results):
+        """Analyze track history to find person with longest duration"""
+        # ... [keep all existing code] ...
+        pass
+    
+    def save_bbox_data(self, target_person_id):
+        """Save bbox coordinates for the target person as JSON"""
+        # ... [keep all existing code] ...
+        pass
+    
+    def stage2_pose2d(self, input_video, target_person_id, tracking_results, bbox_data=None):
+        """Stage 2: 2D pose estimation for the target person"""
+        # ... [keep all existing code] ...
+        pass
+    
+    def run_complete_pipeline(self, input_video, max_frames=None):
+        """Run the complete unified pipeline"""
+        # ... [keep all existing code] ...
+        pass
+
+def stage1_trackdet(self, input_video, max_frames=None):
         """Stage 1: Track all persons and find the longest-running person"""
         print(f"\n{'='*60}")
         print("🎬 STAGE 1: Tracking & Detection")

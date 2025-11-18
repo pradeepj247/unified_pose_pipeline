@@ -10,14 +10,43 @@
 - **Comprehensive Outputs**: Videos, JSON data, and analysis reports
 
 ## Quick Start
+
+### Installation
 ```bash
+# Clone the repository
 git clone https://github.com/pradeepj247/unified_pose_pipeline
 cd unified_pose_pipeline
+
+# Install dependencies (choose one method)
+
+# Method 1: Using requirements.txt
 pip install -r requirements.txt
-python demo.py
+
+# Method 2: Using installation script
+chmod +x install_dependencies.sh
+./install_dependencies.sh
+
+# Method 3: Manual installation
+pip install torch torchvision ultralytics boxmot rtmlib opencv-python
 ```
 
-## Usage
+### Usage
+```python
+from pipeline.unified_pipeline import UnifiedPosePipeline
+
+# Initialize pipeline
+pipeline = UnifiedPosePipeline(
+    tracker_type='ocsort',  # Options: ocsort, bytetrack, botsort, strongsort
+    confidence_threshold=0.5,
+    device='cuda'  # or 'cpu'
+)
+
+# Run complete pipeline
+results = pipeline.run_complete_pipeline(
+    input_video='path/to/your/video.mp4',
+    max_frames=1000  # Optional: limit frames for testing
+)
+```## Usage
 ```python
 from pipeline.unified_pipeline import UnifiedPosePipeline
 

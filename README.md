@@ -67,3 +67,16 @@ pipeline.run_complete_pipeline('your_video.mp4')
 
 ## License
 MIT License
+### 🎬 Demo
+The repository includes a real sample video (`test_videos/campusWalk.mp4`) for immediate testing:
+
+```bash
+# Run the demo (processes first 100 frames for quick testing)
+python demo.py
+```
+
+The demo will:
+1. Track all persons in the video using BoxMOT
+2. Identify the longest-running person
+3. Estimate 2D pose for that person using RTMPose
+4. Generate output videos and analysis files in `unifiedpipelineoutputs/`

@@ -1,0 +1,20 @@
+# Unified Pose Pipeline Configuration
+
+pipeline:
+  output_dir: 'unifiedpipelineoutputs'
+  max_frames: null
+  device: 'cuda'
+
+trackdet:
+  tracker_type: 'ocsort'
+  confidence_threshold: 0.5
+  detection_threshold: 0.2
+  max_age: 30
+  min_hits: 3
+  iou_threshold: 0.3
+  use_osnet: true
+
+pose2d:
+  mode: 'balanced'
+  backend: 'onnxruntime'
+  kpt_thr: 0.3

@@ -1,0 +1,24 @@
+# Core ML
+torch==2.2.2
+torchvision==0.17.2
+
+# Computer Vision
+ultralytics==8.3.228
+opencv-python==4.12.0.88
+numpy==1.26.4
+Pillow==11.3.0
+
+# Tracking
+boxmot==15.0.10
+supervision==0.26.1
+filterpy==1.4.5
+scipy==1.16.3
+scikit-learn==1.6.1
+
+# Pose Estimation
+rtmlib>=0.0.6
+
+# Utilities
+requests==2.32.4
+lapx==0.5.7
+PyYAML>=6.0

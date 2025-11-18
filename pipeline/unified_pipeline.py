@@ -108,7 +108,7 @@ class UnifiedPosePipeline:
         # ... [keep all existing code] ...
         pass
 
-def stage1_trackdet(self, input_video, max_frames=None):
+    def stage1_trackdet(self, input_video, max_frames=None):
         """Stage 1: Track all persons and find the longest-running person"""
         print(f"\n{'='*60}")
         print("🎬 STAGE 1: Tracking & Detection")

@@ -17,6 +17,7 @@ scikit-learn>=1.0.0
 
 # Pose Estimation
 rtmlib>=0.0.6
+onnxruntime-gpu==1.23.0
 
 # Utilities
 requests>=2.25.0

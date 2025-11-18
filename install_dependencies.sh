@@ -7,6 +7,12 @@ echo "================================================="
 # Update pip
 pip install --upgrade pip
 
+# Resolve ONNX Runtime conflicts
+echo "Resolving ONNX Runtime conflicts..."
+pip uninstall -y onnxruntime onnxruntime-gpu
+pip install onnxruntime-gpu==1.23.0
+
+
 # Install core dependencies
 echo ""
 echo "📦 Installing core dependencies..."

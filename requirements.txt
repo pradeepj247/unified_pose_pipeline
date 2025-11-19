@@ -15,9 +15,9 @@ filterpy>=1.4.5
 scipy>=1.7.0
 scikit-learn>=1.0.0
 
-# Pose Estimation
+# Pose Estimation - CRITICAL: Use GPU version for performance
+# pip install onnxruntime-gpu==1.23.0  # Install separately
 rtmlib>=0.0.6
-onnxruntime-gpu==1.23.0
 
 # Utilities
 requests>=2.25.0

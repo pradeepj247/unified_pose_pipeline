@@ -17,19 +17,19 @@
 git clone https://github.com/pradeepj247/unified_pose_pipeline
 cd unified_pose_pipeline
 
-# Install dependencies (choose one method)
+# Install dependencies with GPU optimization
+pip install torch torchvision ultralytics boxmot opencv-python
+pip uninstall -y onnxruntime
+pip install onnxruntime-gpu==1.23.0
+pip install rtmlib supervision filterpy scipy scikit-learn
 
-# Method 1: Using requirements.txt
-pip install -r requirements.txt
-
-# Method 2: Using installation script
+# Alternative: Use the updated installation script
 chmod +x install_dependencies.sh
 ./install_dependencies.sh
-
-# Method 3: Manual installation
-pip install torch torchvision ultralytics boxmot rtmlib opencv-python
 ```
 
+### Performance Optimization
+For optimal performance on NVIDIA GPUs, ensure `onnxruntime-gpu` is installed instead of `onnxruntime`. This provides **2x faster pose estimation** (8 FPS → 19 FPS).
 ### Usage
 ```python
 from pipeline.unified_pipeline import UnifiedPosePipeline

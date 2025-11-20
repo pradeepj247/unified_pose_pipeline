@@ -1,60 +1,47 @@
-# Installation Guide for Unified Pose Pipeline
+# Installation Guide for Unified Pose Pipeline - COLAB VERSION
 
-## Prerequisites
-- Python 3.8+
-- NVIDIA GPU with CUDA support (recommended)
-- Google Colab T4 instance (tested)
-
-## Step-by-Step Installation
-
-### 1. Clone Repository
+## One-Command Installation for Google Colab
 ```bash
-git clone https://github.com/pradeepj247/unified_pose_pipeline
-cd unified_pose_pipeline
+# Run this single command in Colab:
+!git clone https://github.com/pradeepj247/unified_pose_pipeline
+%cd unified_pose_pipeline
+!bash install_colab_proper.sh
 ```
 
-### 2. Install Dependencies
+## Important Finding:
+- **Do NOT run `pip install -e .`** - it causes dependency conflicts
+- **The pipeline works without package installation** - imports work directly
+- Just ensure you're in the project directory and imports will work
 
-**CRITICAL: Use ONNX Runtime GPU version for optimal performance**
-```bash
-# Install core dependencies
-pip install torch torchvision ultralytics opencv-python numpy Pillow
+## Proper Installation Method:
+1. Install ALL packages from requirements.txt first
+2. Install onnxruntime-gpu==1.23.0 SEPARATELY with --no-deps
+3. No need to install the package itself - imports work directly
 
-# Install tracking packages
-pip install boxmot supervision filterpy scipy scikit-learn
-
-# Install pose estimation - MUST USE GPU VERSION
-pip uninstall -y onnxruntime
-pip install onnxruntime-gpu==1.23.0
-pip install rtmlib
-
-# Install utilities
-pip install requests lapx PyYAML
-```
-
-### 3. Verify Installation
+## Usage Example:
 ```python
-# Test critical imports
-import torch, torchvision, ultralytics, boxmot, rtmlib, onnxruntime
-
-# Verify GPU availability
-print(f"CUDA available: {torch.cuda.is_available()}")
-print(f"ONNX Runtime providers: {onnxruntime.get_available_providers()}")
+import sys
+sys.path.append('.')  # Add current directory to path
+from pipeline.unified_pipeline import UnifiedPosePipeline
+# Your pipeline code here...
 ```
 
-### 4. Performance Optimization Notes
-- **Without GPU ONNX**: ~8.86 FPS pose estimation
-- **With GPU ONNX**: ~19.41 FPS pose estimation (+119% improvement)
-- Always verify `CUDAExecutionProvider` is available in ONNX Runtime
+## Why This Works Better:
+- Avoids all dependency conflicts from setup.py
+- Cleaner and more reliable installation
+- Easier to modify and test code
+- Follows the original requirements.txt structure exactly
 
-## Troubleshooting
+## Verification Script:
+Run `python verify_installation.py` to check everything is working
 
-### Common Issues:
-1. **Low FPS**: Check if ONNX Runtime is using GPU
-2. **Import errors**: Ensure you're in the correct directory
-3. **Model download failures**: Check internet connection
+## 🧪 Performance Testing
 
-## Expected Performance on T4 GPU
-- Tracking: 40+ FPS
-- Pose Estimation: 19+ FPS
-- Overall: 13+ FPS
+After installation, you can run performance tests:
+```bash
+cd performance_tests
+python verify_performance.py
+python test_corrected_pipeline.py
+```
+
+These scripts verify the pipeline performance and correctness.
